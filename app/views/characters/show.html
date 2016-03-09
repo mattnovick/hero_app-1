@@ -1,0 +1,24 @@
+<%= link_to "Back to Character List", characters_path %>
+
+<p>
+  <strong>Hero Name:</strong> <%= @character.hero_name %>
+</p>
+
+<p>
+  <strong>First Name:</strong> <%= @character.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong> <%= @character.last_name %>
+</p>
+
+<p>
+  <strong>Universe:</strong> <%= @character.universe %>
+</p>
+
+<p>
+  <strong>bio:</strong> <%= @character.bio %>
+</p>
+
+<br />
+<td><%= link_to "edit", edit_character_path(@character) %></td>
