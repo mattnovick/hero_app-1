@@ -11,16 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309214402) do
+ActiveRecord::Schema.define(version: 20160315002108) do
+
+  create_table "abilities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "character_abilities", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "ability_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "hero_name"
-    t.string   "universe"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "bio"
+    t.integer  "universe_id"
+  end
+
+  create_table "universes", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text     "bio"
   end
 
 end

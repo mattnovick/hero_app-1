@@ -48,6 +48,6 @@ class CharactersController < ApplicationController
   private
 
   def character_params
-    params.require(:character).permit(:first_name, :last_name, :hero_name, :universe, :bio)
+    params.require(:character).permit(:first_name, :last_name, :hero_name, :universe_id, :bio, :ability_ids => [])
   end
 end

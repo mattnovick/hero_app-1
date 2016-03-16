@@ -1084,3 +1084,1347 @@ Processing by CharactersController#index as HTML
   [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT "characters".* FROM "characters"[0m
   Rendered characters/index.html within layouts/application (3.0ms)
 Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Captain America') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCharacter Exists (0.1ms)[0m  SELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Wonder Woman') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Phoenix') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mCharacter Exists (0.1ms)[0m  SELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Batman') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Hulk') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "characters" ("first_name", "last_name", "hero_name", "universe", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["first_name", "Bruce"], ["last_name", "Banner"], ["hero_name", "Hulk"], ["universe", "Marvel"], ["bio", "lorem ipsum"], ["created_at", "2016-03-14 22:29:03.138816"], ["updated_at", "2016-03-14 22:29:03.138816"]]
+  [1m[36m (0.5ms)[0m  [1mcommit transaction[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "characters"[0m
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" ASC LIMIT 1
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" DESC LIMIT 1[0m
+
+
+Started GET "/" for 127.0.0.1 at 2016-03-14 18:29:41 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT "characters".* FROM "characters"
+  Rendered characters/index.html within layouts/application (10.1ms)
+Completed 200 OK in 481ms (Views: 470.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 18:29:50 -0400
+Processing by CharactersController#new as HTML
+  Rendered characters/_form.html.erb (26.7ms)
+  Rendered characters/new.html within layouts/application (30.4ms)
+Completed 200 OK in 38ms (Views: 37.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/1" for 127.0.0.1 at 2016-03-14 18:29:52 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered characters/show.html within layouts/application (0.6ms)
+Completed 200 OK in 21ms (Views: 13.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/characters/2" for 127.0.0.1 at 2016-03-14 18:29:55 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered characters/show.html within layouts/application (0.3ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RemoveUniverseFromCharacters (20160314224224)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.2ms)[0m  [1mCREATE TEMPORARY TABLE "acharacters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "hero_name" varchar, "universe" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "bio" text) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "characters"
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (1, 'Steve', 'Rogers', 'Captain America', 'Marvel', '2016-03-09 21:56:25.301674', '2016-03-10 01:19:46.195194', 'lorem ipsum')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (2, 'Diana', 'Prince', 'Wonder Woman', 'DC', '2016-03-09 21:56:25.307131', '2016-03-09 21:56:25.307131', 'lorem ipsum')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (3, 'Jean', 'Grey', 'Phoenix', 'Marvel', '2016-03-09 21:56:25.309000', '2016-03-09 21:56:25.309000', 'lorem ipsum')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (4, 'Bruce', 'Wayne', 'Batman', 'DC', '2016-03-09 21:56:25.310750', '2016-03-09 21:56:25.310750', 'lorem ipsum')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (5, 'Bruce', 'Banner', 'The Incredible Hulk', 'Marvel', '2016-03-09 21:56:25.312711', '2016-03-10 01:34:53.614835', 'lorem ipsum')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (6, 'Peter', 'Parker', 'Spiderman', 'Marvel', '2016-03-10 00:27:18.099927', '2016-03-10 00:27:18.099927', 'sdfsdfsdfsdfsdfds')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (7, 'Barry', 'Allen', 'Flash', 'DC', '2016-03-10 01:02:23.994016', '2016-03-10 01:02:23.994016', 'sdfsfsdfds')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "acharacters" ("id","first_name","last_name","hero_name","universe","created_at","updated_at","bio") VALUES (8, 'Bruce', 'Banner', 'Hulk', 'Marvel', '2016-03-14 22:29:03.138816', '2016-03-14 22:29:03.138816', 'lorem ipsum')
+  [1m[36m (1.1ms)[0m  [1mDROP TABLE "characters"[0m
+  [1m[35m (0.1ms)[0m  CREATE TABLE "characters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "hero_name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "bio" text) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "acharacters"[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (1, 'Steve', 'Rogers', 'Captain America', '2016-03-09 21:56:25.301674', '2016-03-10 01:19:46.195194', 'lorem ipsum')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (2, 'Diana', 'Prince', 'Wonder Woman', '2016-03-09 21:56:25.307131', '2016-03-09 21:56:25.307131', 'lorem ipsum')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (3, 'Jean', 'Grey', 'Phoenix', '2016-03-09 21:56:25.309000', '2016-03-09 21:56:25.309000', 'lorem ipsum')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (4, 'Bruce', 'Wayne', 'Batman', '2016-03-09 21:56:25.310750', '2016-03-09 21:56:25.310750', 'lorem ipsum')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (5, 'Bruce', 'Banner', 'The Incredible Hulk', '2016-03-09 21:56:25.312711', '2016-03-10 01:34:53.614835', 'lorem ipsum')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (6, 'Peter', 'Parker', 'Spiderman', '2016-03-10 00:27:18.099927', '2016-03-10 00:27:18.099927', 'sdfsdfsdfsdfsdfds')[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (7, 'Barry', 'Allen', 'Flash', '2016-03-10 01:02:23.994016', '2016-03-10 01:02:23.994016', 'sdfsfsdfds')
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "characters" ("id","first_name","last_name","hero_name","created_at","updated_at","bio") VALUES (8, 'Bruce', 'Banner', 'Hulk', '2016-03-14 22:29:03.138816', '2016-03-14 22:29:03.138816', 'lorem ipsum')[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "acharacters"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160314224224"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUniverses (20160314224425)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "universes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160314224425"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddUniverseIdToCharacters (20160314225016)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "characters" ADD "universe_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160314225016"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" ASC LIMIT 1[0m
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."hero_name" = ?  [["hero_name", "Captain America"]]
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."hero_name" = ? LIMIT 1[0m  [["hero_name", "Captain America"]]
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT "characters".* FROM "characters" WHERE "characters"."hero_name" = ?  [["hero_name", "Captain America"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "universes" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Marvel"], ["created_at", "2016-03-14 23:03:09.386911"], ["updated_at", "2016-03-14 23:03:09.386911"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "universes" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "DC"], ["created_at", "2016-03-14 23:03:13.830405"], ["updated_at", "2016-03-14 23:03:13.830405"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT  "universes".* FROM "universes"  ORDER BY "universes"."id" ASC LIMIT 1
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."universe_id" = ?[0m  [["universe_id", 1]]
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes"  ORDER BY "universes"."id" ASC LIMIT 1[0m
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes"  ORDER BY "universes"."id" ASC LIMIT 1[0m
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCharacter Exists (0.2ms)[0m  SELECT  1 AS one FROM "characters" WHERE (LOWER("characters"."hero_name") = LOWER('Captain America') AND "characters"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "characters" SET "universe_id" = ?, "updated_at" = ? WHERE "characters"."id" = ?[0m  [["universe_id", 1], ["updated_at", "2016-03-14 23:12:03.797550"], ["id", 1]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."universe_id" = ?[0m  [["universe_id", 1]]
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT  "universes".* FROM "universes"  ORDER BY "universes"."id" DESC LIMIT 1
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT "characters".* FROM "characters" WHERE "characters"."universe_id" = ?[0m  [["universe_id", 2]]
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-14 19:15:19 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered characters/index.html within layouts/application (22.8ms)
+Completed 200 OK in 39ms (Views: 34.4ms | ActiveRecord: 0.9ms)
+  [1m[35mCharacter Load (0.4ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."hero_name" = ? LIMIT 1  [["hero_name", "Batman"]]
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."hero_name" = ? LIMIT 1[0m  [["hero_name", "Flash"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE (LOWER("characters"."hero_name") = LOWER('Batman') AND "characters"."id" != 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "characters" SET "universe_id" = ?, "updated_at" = ? WHERE "characters"."id" = ?  [["universe_id", 2], ["updated_at", "2016-03-14 23:19:32.214994"], ["id", 4]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE (LOWER("characters"."hero_name") = LOWER('Flash') AND "characters"."id" != 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "characters" SET "universe_id" = ?, "updated_at" = ? WHERE "characters"."id" = ?  [["universe_id", 2], ["updated_at", "2016-03-14 23:19:58.608830"], ["id", 7]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:22:42 -0400
+Processing by CharactersController#new as HTML
+  Rendered characters/_form.html.erb (2.7ms)
+  Rendered characters/new.html within layouts/application (4.1ms)
+Completed 200 OK in 15ms (Views: 14.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:30:17 -0400
+Processing by CharactersController#new as HTML
+  Rendered characters/_form.html.erb (1.4ms)
+  Rendered characters/new.html within layouts/application (2.2ms)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/kareemgrant/Dropbox/nycda_resources/playground/lesson_10/hero_app/app/views/characters/_form.html.erb:37: syntax error, unexpected '<', expecting ')'
+  </p>
+   ^
+/Users/kareemgrant/Dropbox/nycda_resources/playground/lesson_10/hero_app/app/views/characters/_form.html.erb:37: unterminated regexp meets end of file):
+  app/views/characters/_form.html.erb:37: syntax error, unexpected '<', expecting ')'
+  app/views/characters/_form.html.erb:37: unterminated regexp meets end of file
+  app/views/characters/new.html:5:in `_app_views_characters_new_html___4120912152758947828_70176546367020'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.7ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (20.7ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (44.4ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:30:33 -0400
+Processing by CharactersController#new as HTML
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered characters/_form.html.erb (5.5ms)
+  Rendered characters/new.html within layouts/application (6.2ms)
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:30:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:30:33 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:30:33 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:30:33 -0400
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:31:43 -0400
+Processing by CharactersController#new as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered characters/_form.html.erb (4.5ms)
+  Rendered characters/new.html within layouts/application (5.2ms)
+Completed 200 OK in 14ms (Views: 13.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:31:44 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:31:44 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:31:44 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:31:44 -0400
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:34:07 -0400
+Processing by CharactersController#new as HTML
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered characters/_form.html.erb (4.5ms)
+  Rendered characters/new.html within layouts/application (5.1ms)
+Completed 200 OK in 16ms (Views: 15.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:34:07 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:34:07 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:34:07 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:34:07 -0400
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-14 19:34:46 -0400
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT "characters".* FROM "characters"[0m
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered characters/index.html within layouts/application (12.6ms)
+Completed 200 OK in 24ms (Views: 20.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:34:48 -0400
+Processing by CharactersController#new as HTML
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered characters/_form.html.erb (4.4ms)
+  Rendered characters/new.html within layouts/application (5.2ms)
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:35:32 -0400
+Processing by CharactersController#new as HTML
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered characters/_form.html.erb (4.1ms)
+  Rendered characters/new.html within layouts/application (5.1ms)
+Completed 200 OK in 13ms (Views: 12.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:35:32 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:35:32 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:35:33 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:35:33 -0400
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:37:22 -0400
+Processing by CharactersController#new as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered characters/_form.html.erb (7.4ms)
+  Rendered characters/new.html within layouts/application (8.2ms)
+Completed 200 OK in 23ms (Views: 15.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:37:22 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:37:22 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:37:22 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:37:22 -0400
+
+
+Started POST "/characters" for 127.0.0.1 at 2016-03-14 19:37:39 -0400
+Processing by CharactersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"coYU+e215L+G0UOkI2sp3Mxh01nMiGhcqXYqnHWV9h4TxUbJpazSPWT85ciRxCbMC39Y238Q9lgyy3fp2VO78g==", "character"=>{"hero_name"=>"Green Arrow", "first_name"=>"Oliver", "last_name"=>"Queen", "bio"=>"lorem ipsum", "universe_id"=>"2"}, "commit"=>"Create Character"}
+Unpermitted parameter: universe_id
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Green Arrow') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered characters/_form.html.erb (4.0ms)
+  Rendered characters/new.html within layouts/application (4.7ms)
+Completed 200 OK in 55806ms (Views: 15.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-14 19:41:26 -0400
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered characters/index.html within layouts/application (6.2ms)
+Completed 200 OK in 17ms (Views: 15.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 19:42:49 -0400
+Processing by CharactersController#new as HTML
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered characters/_form.html.erb (8.4ms)
+  Rendered characters/new.html within layouts/application (9.2ms)
+Completed 200 OK in 28ms (Views: 19.6ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/characters" for 127.0.0.1 at 2016-03-14 19:43:15 -0400
+Processing by CharactersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hDZlkx6zaSGEV2W3tqclMuOsnsDxSPK7zeGPhKB3OkrldTejVqpfo2Z6w9sECCoiJLIVQkLQbL9WXNLxDLF3pg==", "character"=>{"hero_name"=>"Green Arrow", "first_name"=>"Oliver", "last_name"=>"Queen", "bio"=>"Lorem ipsum", "universe_id"=>"2"}, "commit"=>"Create Character"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCharacter Exists (0.2ms)[0m  SELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Green Arrow') LIMIT 1
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "characters" ("first_name", "last_name", "hero_name", "universe_id", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["first_name", "Oliver"], ["last_name", "Queen"], ["hero_name", "Green Arrow"], ["universe_id", 2], ["bio", "Lorem ipsum"], ["created_at", "2016-03-14 23:43:21.302324"], ["updated_at", "2016-03-14 23:43:21.302324"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/characters/9
+Completed 302 Found in 5780ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/characters/9" for 127.0.0.1 at 2016-03-14 19:43:21 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered characters/show.html within layouts/application (1.2ms)
+Completed 200 OK in 21ms (Views: 19.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/characters/9" for 127.0.0.1 at 2016-03-14 19:44:20 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered characters/show.html within layouts/application (4.4ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:44:20 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:44:20 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:44:20 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:44:20 -0400
+
+
+Started GET "/characters/9" for 127.0.0.1 at 2016-03-14 19:44:55 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCharacter Load (0.1ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered characters/show.html within layouts/application (2.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 19:44:55 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 19:44:55 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 19:44:55 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 19:44:55 -0400
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-14 19:44:57 -0400
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered characters/index.html within layouts/application (6.1ms)
+Completed 200 OK in 18ms (Views: 16.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/characters/2" for 127.0.0.1 at 2016-03-14 19:44:59 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered characters/show.html within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.1ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    13: </p>
+    14: 
+    15: <p>
+    16:   <strong>Universe:</strong> <%= @character.universe.name %>
+    17: </p>
+    18: 
+    19: <p>
+  app/views/characters/show.html:16:in `_app_views_characters_show_html__2789130691741695106_70176520968940'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (22.0ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (18.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (35.2ms)
+
+
+Started GET "/characters/2" for 127.0.0.1 at 2016-03-14 20:01:30 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered characters/show.html within layouts/application (1.1ms)
+Completed 200 OK in 15ms (Views: 13.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 20:01:31 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 20:01:31 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 20:01:31 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 20:01:31 -0400
+
+
+Started GET "/characters/2/edit" for 127.0.0.1 at 2016-03-14 20:01:58 -0400
+Processing by CharactersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered characters/_form.html.erb (4.8ms)
+  Rendered characters/edit.html within layouts/application (6.4ms)
+Completed 200 OK in 19ms (Views: 17.0ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/characters/2" for 127.0.0.1 at 2016-03-14 20:02:02 -0400
+Processing by CharactersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H11Yj4WLnoYewftrFBQmAegr0EoQqTGJsjykd9i9CQF+Hgq/zZKoBPzsXQemuykRLzVbyKMxr40pgfkCdHtE7Q==", "character"=>{"hero_name"=>"Wonder Woman", "first_name"=>"Diana", "last_name"=>"Prince", "bio"=>"lorem ipsum", "universe_id"=>"2"}, "commit"=>"Update Character", "id"=>"2"}
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mCharacter Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "characters" WHERE (LOWER("characters"."hero_name") = LOWER('Wonder Woman') AND "characters"."id" != 2) LIMIT 1[0m
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "characters" SET "universe_id" = ?, "updated_at" = ? WHERE "characters"."id" = ?[0m  [["universe_id", 2], ["updated_at", "2016-03-15 00:02:02.985518"], ["id", 2]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/characters/2
+Completed 302 Found in 9ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/characters/2" for 127.0.0.1 at 2016-03-14 20:02:02 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered characters/show.html within layouts/application (1.5ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAbilities (20160315000710)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "abilities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160315000710"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCharacterAbilities (20160315002108)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "character_abilities" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "character_id" integer, "ability_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160315002108"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "abilities"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "abilities" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "strength"], ["created_at", "2016-03-15 00:28:05.719380"], ["updated_at", "2016-03-15 00:28:05.719380"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "abilities" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "speed"], ["created_at", "2016-03-15 00:28:09.411224"], ["updated_at", "2016-03-15 00:28:09.411224"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "abilities" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "flight"], ["created_at", "2016-03-15 00:28:12.755064"], ["updated_at", "2016-03-15 00:28:12.755064"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "abilities" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "telepath"], ["created_at", "2016-03-15 00:28:16.995238"], ["updated_at", "2016-03-15 00:28:16.995238"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "abilities"[0m
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities"  ORDER BY "abilities"."id" ASC LIMIT 1
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" ASC LIMIT 1[0m
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters"  ORDER BY "characters"."id" ASC LIMIT 1[0m
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities"  ORDER BY "abilities"."id" ASC LIMIT 1
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT "characters".* FROM "characters" INNER JOIN "character_abilities" ON "characters"."id" = "character_abilities"."character_id" WHERE "character_abilities"."ability_id" = ?[0m  [["ability_id", 1]]
+  [1m[35mAbility Load (0.2ms)[0m  SELECT "abilities".* FROM "abilities" INNER JOIN "character_abilities" ON "abilities"."id" = "character_abilities"."ability_id" WHERE "character_abilities"."character_id" = ?  [["character_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "character_abilities" ("character_id", "ability_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["character_id", 1], ["ability_id", 1], ["created_at", "2016-03-15 00:33:31.553889"], ["updated_at", "2016-03-15 00:33:31.553889"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT "characters".* FROM "characters" INNER JOIN "character_abilities" ON "characters"."id" = "character_abilities"."character_id" WHERE "character_abilities"."ability_id" = ?[0m  [["ability_id", 1]]
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."name" = ?  ORDER BY "abilities"."id" ASC LIMIT 1  [["name", "speed"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "character_abilities" ("character_id", "ability_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["character_id", 1], ["ability_id", 2], ["created_at", "2016-03-15 00:34:58.459797"], ["updated_at", "2016-03-15 00:34:58.459797"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT "abilities".* FROM "abilities" INNER JOIN "character_abilities" ON "abilities"."id" = "character_abilities"."ability_id" WHERE "character_abilities"."character_id" = ?[0m  [["character_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "abilities" INNER JOIN "character_abilities" ON "abilities"."id" = "character_abilities"."ability_id" WHERE "character_abilities"."character_id" = ?  [["character_id", 1]]
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-14 20:36:24 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered characters/index.html within layouts/application (29.9ms)
+Completed 200 OK in 58ms (Views: 46.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 20:36:25 -0400
+Processing by CharactersController#new as HTML
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered characters/_form.html.erb (3.4ms)
+  Rendered characters/new.html within layouts/application (4.9ms)
+Completed 200 OK in 14ms (Views: 13.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 20:40:56 -0400
+Processing by CharactersController#new as HTML
+  Rendered characters/_form.html.erb (1.4ms)
+  Rendered characters/new.html within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/Users/kareemgrant/Dropbox/nycda_resources/playground/lesson_10/hero_app/app/views/characters/_form.html.erb:38: syntax error, unexpected '<', expecting ')'
+  </p>
+   ^
+/Users/kareemgrant/Dropbox/nycda_resources/playground/lesson_10/hero_app/app/views/characters/_form.html.erb:38: unterminated regexp meets end of file):
+  app/views/characters/_form.html.erb:38: syntax error, unexpected '<', expecting ')'
+  app/views/characters/_form.html.erb:38: unterminated regexp meets end of file
+  app/views/characters/new.html:5:in `_app_views_characters_new_html___4120912152758947828_70176546367020'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (20.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (45.2ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 20:41:06 -0400
+Processing by CharactersController#new as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  [1m[35mAbility Load (0.1ms)[0m  SELECT "abilities".* FROM "abilities"
+  Rendered characters/_form.html.erb (28.3ms)
+  Rendered characters/new.html within layouts/application (29.0ms)
+Completed 200 OK in 38ms (Views: 36.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 20:41:06 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 20:41:06 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 20:41:06 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 20:41:06 -0400
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 20:42:49 -0400
+Processing by CharactersController#new as HTML
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  [1m[35mAbility Load (0.1ms)[0m  SELECT "abilities".* FROM "abilities"
+  Rendered characters/_form.html.erb (7.0ms)
+  Rendered characters/new.html within layouts/application (7.8ms)
+Completed 200 OK in 17ms (Views: 16.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 20:42:49 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 20:42:49 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 20:42:49 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 20:42:49 -0400
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-14 20:43:06 -0400
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters"[0m
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered characters/index.html within layouts/application (6.3ms)
+Completed 200 OK in 16ms (Views: 14.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/characters" for 127.0.0.1 at 2016-03-14 20:44:04 -0400
+Processing by CharactersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MIilF40qw7o5NQ+hYXJNxLBabV620/Ch8IU+fcGAjSRRy/cnxTP1ONsYqc3T3ULUd0Tm3AVLbqVrOGMIbUbAyA==", "character"=>{"hero_name"=>"Professor X", "first_name"=>"Charles", "last_name"=>"Xavier", "bio"=>"lorem", "universe_id"=>"1", "ability_ids"=>["4", ""]}, "commit"=>"Create Character"}
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-14 20:49:01 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CharactersController#new as HTML
+  [1m[35mUniverse Load (0.3ms)[0m  SELECT "universes".* FROM "universes"
+  [1m[36mAbility Load (0.2ms)[0m  [1mSELECT "abilities".* FROM "abilities"[0m
+  Rendered characters/_form.html.erb (59.2ms)
+  Rendered characters/new.html within layouts/application (63.9ms)
+Completed 200 OK in 335ms (Views: 308.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 20:49:02 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 20:49:02 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 20:49:02 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 20:49:02 -0400
+
+
+Started POST "/characters" for 127.0.0.1 at 2016-03-14 20:49:17 -0400
+Processing by CharactersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nZEYfHu1mkXx/9dRQ2Lmy1pO8WXcGp8QTOUJNAMfEMv80kpMM6ysxxPScT3xzenbnVB652+CARTXWFRBr9ldJw==", "character"=>{"hero_name"=>"Professor X", "first_name"=>"Charles", "last_name"=>"Xavier", "bio"=>"sfsdsdfsfdfsd", "universe_id"=>"1", "ability_ids"=>["4", ""]}, "commit"=>"Create Character"}
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mCharacter Exists (0.1ms)[0m  SELECT  1 AS one FROM "characters" WHERE LOWER("characters"."hero_name") = LOWER('Professor X') LIMIT 1
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "characters" ("first_name", "last_name", "hero_name", "universe_id", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["first_name", "Charles"], ["last_name", "Xavier"], ["hero_name", "Professor X"], ["universe_id", 1], ["bio", "sfsdsdfsfdfsd"], ["created_at", "2016-03-15 00:49:28.958723"], ["updated_at", "2016-03-15 00:49:28.958723"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "character_abilities" ("ability_id", "character_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["ability_id", 4], ["character_id", 10], ["created_at", "2016-03-15 00:49:28.960903"], ["updated_at", "2016-03-15 00:49:28.960903"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/characters/10
+Completed 302 Found in 11812ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/characters/10" for 127.0.0.1 at 2016-03-14 20:49:28 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered characters/show.html within layouts/application (2.5ms)
+Completed 200 OK in 26ms (Views: 23.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/characters/10" for 127.0.0.1 at 2016-03-14 20:51:32 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mCharacter Load (0.2ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 10]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mAbility Load (0.2ms)[0m  [1mSELECT "abilities".* FROM "abilities" INNER JOIN "character_abilities" ON "abilities"."id" = "character_abilities"."ability_id" WHERE "character_abilities"."character_id" = ?[0m  [["character_id", 10]]
+  Rendered characters/show.html within layouts/application (5.3ms)
+Completed 200 OK in 105ms (Views: 103.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-14 20:51:32 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-14 20:51:32 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-14 20:51:32 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-14 20:51:32 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2016-03-16 17:28:30 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.5ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.4ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered characters/index.html within layouts/application (40.7ms)
+Completed 200 OK in 260ms (Views: 239.6ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-03-16 17:29:22 -0400
+Processing by CharactersController#index as HTML
+  [1m[36mCharacter Load (0.3ms)[0m  [1mSELECT "characters".* FROM "characters"[0m
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered characters/index.html within layouts/application (14.0ms)
+Completed 200 OK in 24ms (Views: 20.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-16 17:29:22 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-16 17:29:22 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-16 17:29:22 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-16 17:29:22 -0400
+
+
+Started GET "/" for 127.0.0.1 at 2016-03-16 18:26:41 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.3ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered characters/index.html within layouts/application (38.9ms)
+Completed 200 OK in 251ms (Views: 235.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/abilities" for 127.0.0.1 at 2016-03-16 18:26:47 -0400
+Processing by AbilitiesController#index as HTML
+  [1m[36mAbility Load (0.4ms)[0m  [1mSELECT "abilities".* FROM "abilities"[0m
+  Rendered abilities/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 17ms (Views: 13.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/abilities/1" for 127.0.0.1 at 2016-03-16 18:26:50 -0400
+Processing by AbilitiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered abilities/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 22ms (Views: 15.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/abilities/1/edit" for 127.0.0.1 at 2016-03-16 18:26:53 -0400
+Processing by AbilitiesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered abilities/_form.html.erb (21.7ms)
+  Rendered abilities/edit.html.erb within layouts/application (29.3ms)
+Completed 200 OK in 40ms (Views: 39.0ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/abilities/1" for 127.0.0.1 at 2016-03-16 18:26:58 -0400
+Processing by AbilitiesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4Qz/FiWz7wEV6zqCTzAy8J30hZ9lnTWHeSdl1dZSyYXuD6O3oNY7sWuDhzxYpZGNK2Mgu4XtZ4FwYiV1trPHWw==", "ability"=>{"name"=>"power"}, "commit"=>"Update Ability", "id"=>"1"}
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "abilities" SET "name" = ?, "updated_at" = ? WHERE "abilities"."id" = ?  [["name", "power"], ["updated_at", "2016-03-16 22:26:58.591627"], ["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.7ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"abilities", :id=>nil} missing required keys: [:id]):
+  app/controllers/abilities_controller.rb:33:in `update'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (48.0ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (67.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (21.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (44.8ms)
+
+
+Started GET "/abilities/1/edit" for 127.0.0.1 at 2016-03-16 18:27:24 -0400
+Processing by AbilitiesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAbility Load (0.3ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered abilities/_form.html.erb (2.4ms)
+  Rendered abilities/edit.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 35ms (Views: 25.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-16 18:27:24 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:24 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:24 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:24 -0400
+
+
+Started GET "/abilities/1/edit" for 127.0.0.1 at 2016-03-16 18:27:26 -0400
+Processing by AbilitiesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered abilities/_form.html.erb (0.9ms)
+  Rendered abilities/edit.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:26 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-16 18:27:26 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:26 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:26 -0400
+
+
+Started PATCH "/abilities/1" for 127.0.0.1 at 2016-03-16 18:27:27 -0400
+Processing by AbilitiesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gmEvHyGQ0M9T2GdsBj1faQnN+VjD6l9fuD9Cir9zAeCNYnO+pPUEfy2w2tIRqPwUv1pcfCOaDVmxegIq35IPPg==", "ability"=>{"name"=>"power"}, "commit"=>"Update Ability", "id"=>"1"}
+  [1m[35mAbility Load (0.1ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms)
+
+ActionController::UrlGenerationError (No route matches {:action=>"show", :controller=>"abilities", :id=>nil} missing required keys: [:id]):
+  app/controllers/abilities_controller.rb:33:in `update'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.6ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (16.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (14.0ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (33.0ms)
+
+
+Started GET "/abilities/1/edit" for 127.0.0.1 at 2016-03-16 18:27:44 -0400
+Processing by AbilitiesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered abilities/_form.html.erb (1.2ms)
+  Rendered abilities/edit.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 15ms (Views: 9.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:44 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:44 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-16 18:27:44 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-16 18:27:44 -0400
+
+
+Started PATCH "/abilities/1" for 127.0.0.1 at 2016-03-16 18:27:46 -0400
+Processing by AbilitiesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3oBFmWxwbCw4LpLDrjGbN1Z4UvQegyB+NPRMcnboEJzRgxk46RW4nEZGL325pDhK4O/30P7zcng9sQzSFgkeQg==", "ability"=>{"name"=>"power"}, "commit"=>"Update Ability", "id"=>"1"}
+  [1m[35mAbility Load (0.1ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/abilities/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/abilities/1" for 127.0.0.1 at 2016-03-16 18:27:46 -0400
+Processing by AbilitiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered abilities/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 10ms (Views: 8.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/abilities" for 127.0.0.1 at 2016-03-16 18:27:48 -0400
+Processing by AbilitiesController#index as HTML
+  [1m[35mAbility Load (0.1ms)[0m  SELECT "abilities".* FROM "abilities"
+  Rendered abilities/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 14ms (Views: 13.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/abilities/new" for 127.0.0.1 at 2016-03-16 18:27:53 -0400
+Processing by AbilitiesController#new as HTML
+  Rendered abilities/_form.html.erb (1.0ms)
+  Rendered abilities/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 26ms (Views: 25.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/abilities" for 127.0.0.1 at 2016-03-16 18:28:17 -0400
+Processing by AbilitiesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wScQd6AJ96qxmYsigRx4Tsm357i7er5LXj4ms8tx1IDOJEzWJWwjGs/xNpyWidszfyBCnFsK7E1Xe2YTq5DaXg==", "ability"=>{"name"=>"Martial Arts"}, "commit"=>"Create Ability"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.1ms)[0m  INSERT INTO "abilities" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Martial Arts"], ["created_at", "2016-03-16 22:28:17.129553"], ["updated_at", "2016-03-16 22:28:17.129553"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/abilities/5
+Completed 302 Found in 13ms (ActiveRecord: 6.1ms)
+
+
+Started GET "/abilities/5" for 127.0.0.1 at 2016-03-16 18:28:17 -0400
+Processing by AbilitiesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered abilities/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 29ms (Views: 28.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/abilities" for 127.0.0.1 at 2016-03-16 18:28:19 -0400
+Processing by AbilitiesController#index as HTML
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT "abilities".* FROM "abilities"[0m
+  Rendered abilities/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 12ms (Views: 11.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/abilities/5" for 127.0.0.1 at 2016-03-16 18:28:31 -0400
+Processing by AbilitiesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mAbility Load (0.1ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered abilities/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/abilities/5/edit" for 127.0.0.1 at 2016-03-16 18:28:33 -0400
+Processing by AbilitiesController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1[0m  [["id", 5]]
+  Rendered abilities/_form.html.erb (1.0ms)
+  Rendered abilities/edit.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/abilities/5" for 127.0.0.1 at 2016-03-16 18:28:40 -0400
+Processing by AbilitiesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aTXGFmzexy+937Gx2o8vLhfAUwHo4696U7gHZhs6Hp1mNpq36bsTn8O3DA/NGoxToVf2JQiT/Xxa/UfGe9sQQw==", "ability"=>{"name"=>"martial arts"}, "commit"=>"Update Ability", "id"=>"5"}
+  [1m[35mAbility Load (0.1ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "abilities" SET "name" = ?, "updated_at" = ? WHERE "abilities"."id" = ?  [["name", "martial arts"], ["updated_at", "2016-03-16 22:28:40.594561"], ["id", 5]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/abilities/5
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/abilities/5" for 127.0.0.1 at 2016-03-16 18:28:40 -0400
+Processing by AbilitiesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mAbility Load (0.2ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered abilities/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 27ms (Views: 25.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/abilities" for 127.0.0.1 at 2016-03-16 18:28:41 -0400
+Processing by AbilitiesController#index as HTML
+  [1m[36mAbility Load (0.1ms)[0m  [1mSELECT "abilities".* FROM "abilities"[0m
+  Rendered abilities/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 12ms (Views: 11.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/characters" for 127.0.0.1 at 2016-03-16 18:28:48 -0400
+Processing by CharactersController#index as HTML
+  [1m[35mCharacter Load (0.2ms)[0m  SELECT "characters".* FROM "characters"
+  [1m[36mUniverse Load (0.6ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered characters/index.html within layouts/application (30.6ms)
+Completed 200 OK in 46ms (Views: 40.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/characters/new" for 127.0.0.1 at 2016-03-16 18:28:50 -0400
+Processing by CharactersController#new as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  [1m[35mAbility Load (0.2ms)[0m  SELECT "abilities".* FROM "abilities"
+  Rendered characters/_form.html.erb (41.8ms)
+  Rendered characters/new.html within layouts/application (42.9ms)
+Completed 200 OK in 52ms (Views: 50.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/characters/1" for 127.0.0.1 at 2016-03-16 18:28:57 -0400
+Processing by CharactersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCharacter Load (0.1ms)[0m  [1mSELECT  "characters".* FROM "characters" WHERE "characters"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mAbility Load (0.7ms)[0m  [1mSELECT "abilities".* FROM "abilities" INNER JOIN "character_abilities" ON "abilities"."id" = "character_abilities"."ability_id" WHERE "character_abilities"."character_id" = ?[0m  [["character_id", 1]]
+  Rendered characters/show.html within layouts/application (12.3ms)
+Completed 200 OK in 28ms (Views: 26.3ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/abilities/4" for 127.0.0.1 at 2016-03-16 18:29:04 -0400
+Processing by AbilitiesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Zwv/tdu79XGUASjsDtvpOTyV7o3rHMUDkjyP+jp85KRoCKMUXt4hwepplVIZTkpEigJLqQtslwWbec9aWp3qeg==", "id"=>"4"}
+  [1m[35mAbility Load (0.1ms)[0m  SELECT  "abilities".* FROM "abilities" WHERE "abilities"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "abilities" WHERE "abilities"."id" = ?  [["id", 4]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/abilities
+Completed 302 Found in 4ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/abilities" for 127.0.0.1 at 2016-03-16 18:29:04 -0400
+Processing by AbilitiesController#index as HTML
+  [1m[35mAbility Load (0.4ms)[0m  SELECT "abilities".* FROM "abilities"
+  Rendered abilities/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 24ms (Views: 22.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:29:12 -0400
+
+LoadError (Unable to autoload constant UniversesController, expected /Users/kareemgrant/Dropbox/nycda_resources/playground/lesson_10/hero_app/app/controllers/universes_controller.rb to define it):
+  activesupport (4.2.1) lib/active_support/dependencies.rb:495:in `load_missing_constant'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:184:in `const_missing'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `constantize'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:566:in `get'
+  activesupport (4.2.1) lib/active_support/dependencies.rb:597:in `constantize'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (16.7ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (14.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.5ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (32.9ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:29:35 -0400
+Processing by UniversesController#index as HTML
+  Rendered universes/index.html.erb within layouts/application (3.4ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    11:     <th></th>
+    12:   </tr>
+    13:   <tbody>
+    14:     <% @abilities.each do |ability| %>
+    15:       <tr>
+    16:         <td><%= link_to(universe.name, universe_path(universe)) %></td>
+    17:         <td><%= link_to "edit", edit_universe_path(universe) %></td>
+  app/views/universes/index.html.erb:14:in `_app_views_universes_index_html_erb__813227134618859061_70144902848980'
+
+
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.8ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (12.9ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/kareemgrant/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (41.0ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:30:05 -0400
+Processing by UniversesController#index as HTML
+  [1m[36mUniverse Load (0.3ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered universes/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-16 18:30:05 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-16 18:30:05 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-16 18:30:05 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-16 18:30:05 -0400
+
+
+Started GET "/universes/new" for 127.0.0.1 at 2016-03-16 18:30:08 -0400
+Processing by UniversesController#new as HTML
+  Rendered universes/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:30:53 -0400
+Processing by UniversesController#index as HTML
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered universes/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 10ms (Views: 9.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-03-16 18:30:54 -0400
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for 127.0.0.1 at 2016-03-16 18:30:54 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for 127.0.0.1 at 2016-03-16 18:30:54 -0400
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for 127.0.0.1 at 2016-03-16 18:30:54 -0400
+
+
+Started GET "/universes/new" for 127.0.0.1 at 2016-03-16 18:30:55 -0400
+Processing by UniversesController#new as HTML
+  Rendered universes/_form.html.erb (1.6ms)
+  Rendered universes/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 15ms (Views: 14.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:30:56 -0400
+Processing by UniversesController#index as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered universes/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 10ms (Views: 9.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/universes/new" for 127.0.0.1 at 2016-03-16 18:30:58 -0400
+Processing by UniversesController#new as HTML
+  Rendered universes/_form.html.erb (1.9ms)
+  Rendered universes/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 17ms (Views: 16.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:30:59 -0400
+Processing by UniversesController#index as HTML
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered universes/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/universes/new" for 127.0.0.1 at 2016-03-16 18:31:00 -0400
+Processing by UniversesController#new as HTML
+  Rendered universes/_form.html.erb (0.7ms)
+  Rendered universes/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 9ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:31:01 -0400
+Processing by UniversesController#index as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered universes/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 16.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/universes/new" for 127.0.0.1 at 2016-03-16 18:31:01 -0400
+Processing by UniversesController#new as HTML
+  Rendered universes/_form.html.erb (0.8ms)
+  Rendered universes/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 14ms (Views: 13.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:31:04 -0400
+Processing by UniversesController#index as HTML
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT "universes".* FROM "universes"
+  Rendered universes/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/universes/new" for 127.0.0.1 at 2016-03-16 18:31:48 -0400
+Processing by UniversesController#new as HTML
+  Rendered universes/_form.html.erb (0.8ms)
+  Rendered universes/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 9ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/universes" for 127.0.0.1 at 2016-03-16 18:31:57 -0400
+Processing by UniversesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"33KrBFn+b0DMGeVUvca60b02MOfvNDJRcpa6OUnpkabQcfel3Ju78LJxWOqqUxmsC6GVww9EYFd70/qZKQifeA==", "universe"=>{"name"=>"Veritigo"}, "commit"=>"Create Universe"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "universes" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Veritigo"], ["created_at", "2016-03-16 22:31:57.261665"], ["updated_at", "2016-03-16 22:31:57.261665"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/universes/3
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/universes/3" for 127.0.0.1 at 2016-03-16 18:31:57 -0400
+Processing by UniversesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUniverse Load (0.2ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered universes/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 26ms (Views: 22.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/universes" for 127.0.0.1 at 2016-03-16 18:31:58 -0400
+Processing by UniversesController#index as HTML
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT "universes".* FROM "universes"[0m
+  Rendered universes/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 19ms (Views: 18.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/universes/3/edit" for 127.0.0.1 at 2016-03-16 18:32:00 -0400
+Processing by UniversesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered universes/_form.html.erb (1.0ms)
+  Rendered universes/edit.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/universes/3" for 127.0.0.1 at 2016-03-16 18:32:03 -0400
+Processing by UniversesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VrOwE5fRkDhxlQLG8f5gE7HW0nJwgQnBUVC/ft43st9ZsOyyErREiA/9v3jma8NuB0F3VpDxW8dYFf/evta8AQ==", "universe"=>{"name"=>"Veritiga"}, "commit"=>"Update Universe", "id"=>"3"}
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "universes" SET "name" = ?, "updated_at" = ? WHERE "universes"."id" = ?[0m  [["name", "Veritiga"], ["updated_at", "2016-03-16 22:32:03.430970"], ["id", 3]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/universes/3
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/universes/3" for 127.0.0.1 at 2016-03-16 18:32:03 -0400
+Processing by UniversesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUniverse Load (0.2ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered universes/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 17ms (Views: 15.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/universes/3/edit" for 127.0.0.1 at 2016-03-16 18:32:05 -0400
+Processing by UniversesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUniverse Load (0.1ms)[0m  SELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered universes/_form.html.erb (0.8ms)
+  Rendered universes/edit.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 31ms (Views: 30.2ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/universes/3" for 127.0.0.1 at 2016-03-16 18:32:08 -0400
+Processing by UniversesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VY1tIr3iF/0ELrk8VtdDhhzRu7WoTpPWIf2G6A0T+sdajjGDOIfDTXpGBIJBQuD7qkYekUg+wdAouMZIbfL0GQ==", "universe"=>{"name"=>"Veritigo"}, "commit"=>"Update Universe", "id"=>"3"}
+  [1m[36mUniverse Load (0.1ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "universes" SET "name" = ?, "updated_at" = ? WHERE "universes"."id" = ?[0m  [["name", "Veritigo"], ["updated_at", "2016-03-16 22:32:08.681345"], ["id", 3]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/universes/3
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/universes/3" for 127.0.0.1 at 2016-03-16 18:32:08 -0400
+Processing by UniversesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUniverse Load (0.3ms)[0m  [1mSELECT  "universes".* FROM "universes" WHERE "universes"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered universes/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 21.7ms | ActiveRecord: 0.3ms)
