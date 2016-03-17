@@ -7,7 +7,15 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav><a href="#">Marvel</a> <a href="#">DC</a></nav>
+    <nav>
+      <% if current_user %>
+        <%= current_user.email %>
+        <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "register", new_user_registration_path %>
+        <%= link_to "sign in", user_session_path %>
+      <% end %> 
+    </nav>
 
     <% flash.each do |name, msg| %>
       <div class="<%= name %>">

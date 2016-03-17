@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :characters
   resources :universes
   resources :abilities
 
-  root "characters#index"
+  root "home#index"
 end

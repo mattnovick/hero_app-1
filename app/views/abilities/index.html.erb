@@ -1,6 +1,8 @@
 <h1>Abilities</h1>
-
-<%= link_to "Create New Ability", new_ability_path %>
+<%= link_to "Home", root_path %>
+<% if current_user %>
+  <%= link_to "Create New Ability", new_ability_path %>
+<% end %>
 
 <br />
 <br />
@@ -14,8 +16,10 @@
     <% @abilities.each do |ability| %>
       <tr>
         <td><%= link_to(ability.name, ability_path(ability)) %></td>
-        <td><%= link_to "edit", edit_ability_path(ability) %></td>
-        <td><%= link_to "delete", ability_path(ability), method: :delete, data: {confirm: "Are you sure you want to delete this ability?"}%></td>
+        <% if current_user %>
+          <td><%= link_to "edit", edit_ability_path(ability) %></td>
+          <td><%= link_to "delete", ability_path(ability), method: :delete, data: {confirm: "Are you sure you want to delete this ability?"}%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

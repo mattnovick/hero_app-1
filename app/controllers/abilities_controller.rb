@@ -1,10 +1,12 @@
 class AbilitiesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_ability, only: [:show, :edit, :update, :destroy]
+
   def index
     @abilities = Ability.all
   end
 
   def show
-    @ability = Ability.find(params[:id])
   end
 
   def new
@@ -23,12 +25,9 @@ class AbilitiesController < ApplicationController
   end
 
   def edit
-    @ability = Ability.find(params[:id])
   end
 
   def update
-    @ability = Ability.find(params[:id])
-
     if @ability.update(abilities_params)
       redirect_to ability_path(@ability), notice: "Ability was successfully updated!"
     else
@@ -38,13 +37,16 @@ class AbilitiesController < ApplicationController
   end
 
   def destroy
-    @ability = Ability.find(params[:id])
     @ability.destroy
 
     redirect_to abilities_path, notice: "Ability was successfully deleted"
   end
 
   private
+
+  def find_ability
+    @ability = Ability.find(params[:id])
+  end
 
   def abilities_params
     params.require(:ability).permit(:name)

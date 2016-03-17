@@ -28,4 +28,7 @@
 </ul>
 
 <br />
-<td><%= link_to "edit", edit_character_path(@character) %></td>
+<% if current_user %>
+  <td><%= link_to "edit", edit_character_path(@character) %></td>
+<% end %>
+
